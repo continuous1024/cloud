@@ -55,7 +55,7 @@ public class NacosConfigDemoConfiguration {
     @Bean
     public ApplicationRunner runner() {
         return args -> {
-            String dataId = "nacos-config-sample.properties";
+            String dataId = "cloud.properties";
             String group = "DEFAULT_GROUP";
             nacosConfigManager.getConfigService().addListener(dataId, group, new AbstractListener() {
                 @Override
