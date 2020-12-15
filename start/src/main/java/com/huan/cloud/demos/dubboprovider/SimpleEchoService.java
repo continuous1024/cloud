@@ -16,9 +16,10 @@
 package com.huan.cloud.demos.dubboprovider;
 
 import com.alibaba.cloud.demo.dubbo.api.EchoService;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.dubbo.config.annotation.Service;
 
-@Service
+@DubboService
 public class SimpleEchoService implements EchoService {
 
     @Override

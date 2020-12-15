@@ -19,8 +19,8 @@
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
-@EnableFeignClients // 激活 @FeignClient
+//@Configuration
+//@EnableFeignClients // 激活 @FeignClient
 public class NacosDiscoveryConsumerConfiguration {
 
 }
