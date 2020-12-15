@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @author xiaojing
  */
-@RestController
+// @RestController
 public class StorageController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(StorageController.class);

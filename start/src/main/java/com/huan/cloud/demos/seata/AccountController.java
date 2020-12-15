@@ -27,7 +27,7 @@ import java.util.Random;
 /**
  * @author xiaojing
  */
-@RestController
+// @RestController
 public class AccountController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(AccountController.class);

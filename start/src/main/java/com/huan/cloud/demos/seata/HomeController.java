@@ -36,7 +36,7 @@ import org.springframework.web.client.RestTemplate;
 /**
  * @author xiaojing
  */
-@RestController
+// @RestController
 public class HomeController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);

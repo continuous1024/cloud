@@ -42,7 +42,7 @@ import org.springframework.web.client.RestTemplate;
 /**
  * @author xiaojing
  */
-@RestController
+// @RestController
 public class OrderController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(OrderController.class);

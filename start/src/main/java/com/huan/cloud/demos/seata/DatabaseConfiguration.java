@@ -31,7 +31,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 /**
  * @author xiaojing
  */
-@Configuration
+// @Configuration
 public class DatabaseConfiguration {
 
 	private final ApplicationContext applicationContext;
@@ -43,20 +43,20 @@ public class DatabaseConfiguration {
 	@Bean(initMethod = "init", destroyMethod = "close")
 	public DruidDataSource storageDataSource() throws SQLException {
 
-		Environment environment = applicationContext.getEnvironment();
+		// Environment environment = applicationContext.getEnvironment();
 
-		String ip = environment.getProperty("mysql.server.ip");
-		String port = environment.getProperty("mysql.server.port");
-		String dbName = environment.getProperty("mysql.db.name");
+		// String ip = environment.getProperty("mysql.server.ip");
+		// String port = environment.getProperty("mysql.server.port");
+		// String dbName = environment.getProperty("mysql.db.name");
 
-		String userName = environment.getProperty("mysql.user.name");
-		String password = environment.getProperty("mysql.user.password");
+		// String userName = environment.getProperty("mysql.user.name");
+		// String password = environment.getProperty("mysql.user.password");
 
 		DruidDataSource druidDataSource = new DruidDataSource();
 		druidDataSource.setUrl(
-				"jdbc:mysql://" + ip + ":" + port + "/" + dbName + "?serverTimezone=UTC");
-		druidDataSource.setUsername(userName);
-		druidDataSource.setPassword(password);
+				"jdbc:mysql://localhost:3306/seata?useSSL=false&serverTimezone=UTC");
+		druidDataSource.setUsername("debian-sys-maint");
+		druidDataSource.setPassword("B7Dm85mKii0mF7aB");
 		druidDataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		druidDataSource.setInitialSize(0);
 		druidDataSource.setMaxActive(180);
@@ -76,18 +76,18 @@ public class DatabaseConfiguration {
 	}
 
 	@Bean
-	public DataSourceProxy dataSourceProxy(DruidDataSource druidDataSource) {
-		return new DataSourceProxy(druidDataSource);
+	public DataSourceProxy dataSourceProxy() throws SQLException {
+		return new DataSourceProxy(storageDataSource());
 	}
 
 	@Bean
-	public JdbcTemplate jdbcTemplate(DataSourceProxy dataSourceProxy) {
+	public JdbcTemplate jdbcTemplate(DataSourceProxy dataSourceProxy) throws SQLException {
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSourceProxy);
 
-		jdbcTemplate.update("delete from storage_tbl where commodity_code = 'C00321'");
-		jdbcTemplate.update(
-				"insert into storage_tbl(commodity_code, count) values ('C00321', 100)");
+		// jdbcTemplate.update("delete from storage_tbl where commodity_code = 'C00321'");
+		// jdbcTemplate.update(
+		// 		"insert into storage_tbl(commodity_code, count) values ('C00321', 100)");
 
 		return jdbcTemplate;
 

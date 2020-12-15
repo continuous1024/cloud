@@ -25,8 +25,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.huan.cloud.demos.mybatis.entity.MybatisDemoUser;
 import com.huan.cloud.demos.mybatis.mapper.MybatisDemoUserMapper;
 
-@RestController
-@RequestMapping("/user")
+// @RestController
+// @RequestMapping("/user")
 public class MybatisDemoUserController {
 
     @Autowired

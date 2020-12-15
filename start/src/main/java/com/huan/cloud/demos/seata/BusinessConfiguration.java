@@ -28,14 +28,14 @@ import org.springframework.web.client.RestTemplate;
 /**
  * @author xiaojing
  */
-@Configuration
-@EnableFeignClients
+// @Configuration
+// @EnableFeignClients
 public class BusinessConfiguration {
 
-	@Bean
-	public RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
+	// @Bean
+	// public RestTemplate restTemplate() {
+	// 	return new RestTemplate();
+	// }
 
 	@FeignClient(value = "storage", url = "http://127.0.0.1:18082")
 	public interface StorageService {

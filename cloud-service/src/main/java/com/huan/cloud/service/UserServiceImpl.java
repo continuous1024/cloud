@@ -15,13 +15,14 @@ import com.huan.cloud.api.model.UserModel;
 @Component
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private UserMapper userMapper;
+    // @Autowired
+    // private UserMapper userMapper;
 
     private static final BeanCopier copier = BeanCopier.create(UserModel.class, UserDO.class, false);
 
     public String getUserName(Long id) {
-        UserDO userDO = userMapper.getById(id);
+        // UserDO userDO = userMapper.getById(id);
+        UserDO userDO = null;
         return userDO != null ? userDO.getName() : null;
     }
 
@@ -29,8 +30,8 @@ public class UserServiceImpl implements UserService {
         UserDO userDO = new UserDO();
         copier.copy(user, userDO, null);
 
-        Long id = userMapper.insert(userDO);
-        user.setId(id);
+        // Long id = userMapper.insert(userDO);
+        // user.setId(id);
         return user;
     }
 }
