@@ -32,7 +32,7 @@ public class FooServiceImpl implements FooService {
         // Simulate slow invocations randomly.
         if (slow) {
             try {
-                Thread.sleep(100);
+                Thread.sleep(2000);
             } catch (InterruptedException ignored) {
             }
         }
