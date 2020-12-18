@@ -17,11 +17,13 @@ package com.huan.cloud.demos.sentinel;
 import com.alibaba.cloud.demo.sentinel.api.FooService;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 
 /**
@@ -37,6 +39,12 @@ public class DemoController {
     @Autowired
     private DemoService demoService;
 
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @Autowired
+    private CircuitBreakerFactory circuitBreakerFactory;
+
     @GetMapping("/hello")
     public String apiSayHello(@RequestParam String name) {
         return fooService.sayHello(name);
@@ -50,5 +58,23 @@ public class DemoController {
     @GetMapping("/time")
     public long apiCurrentTime(@RequestParam(value = "slow", defaultValue = "false") Boolean slow) {
         return fooService.getCurrentTime(slow);
+    }
+
+    @GetMapping("/template")
+    public String client() {
+        return restTemplate.getForObject("http://www.taobao.com/test", String.class);
+    }
+
+    @GetMapping("/slow")
+    public String slow() {
+        return circuitBreakerFactory.create("slow").run(() -> {
+            try {
+                Thread.sleep(500L);
+            }
+            catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return "slow";
+        }, throwable -> "fallback");
     }
 }
